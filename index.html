@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Component Price Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0F1116; --surface:#161A22; --border:#262C38;
+    --text:#E7EAF0; --muted:#838C9C;
+    --drop:#3FAE6B; --rise:#E4594F; --stock:#DDA23A; --line:#5B8DEF;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    padding-top:env(safe-area-inset-top,0); padding-bottom:env(safe-area-inset-bottom,0);
+  }
+  .num{font-family:'IBM Plex Mono',monospace;}
+  header{
+    border-bottom:1px solid var(--border); padding:20px 24px 0;
+    position:sticky; top:0; background:var(--bg); z-index:5;
+  }
+  h1{font-size:20px; font-weight:600; margin:0 0 4px;}
+  .sub{color:var(--muted); font-size:13px; margin-bottom:16px;}
+  nav{display:flex; gap:4px;}
+  nav button{
+    background:none; border:none; color:var(--muted); font:inherit; font-size:14px;
+    padding:10px 4px; margin-right:20px; cursor:pointer; border-bottom:2px solid transparent;
+  }
+  nav button.active{color:var(--text); border-bottom-color:var(--line);}
+  main{padding:24px; max-width:1180px; margin:0 auto;}
+  .tab{display:none;}
+  .tab.active{display:block;}
+  table{width:100%; border-collapse:collapse; font-size:13px;}
+  th{
+    text-align:left; color:var(--muted); font-weight:500; font-size:11px;
+    letter-spacing:.02em; padding:8px 10px; border-bottom:1px solid var(--border);
+  }
+  td{padding:10px; border-bottom:1px solid var(--border); vertical-align:middle;}
+  tr:hover td{background:#131720;}
+  .cat{color:var(--muted); font-size:11px;}
+  .flag{
+    display:inline-block; padding:2px 8px; border-radius:3px; font-size:11px; font-weight:600;
+  }
+  .flag-drop{background:rgba(63,174,107,.15); color:var(--drop);}
+  .flag-rise{background:rgba(228,89,79,.15); color:var(--rise);}
+  .flag-stock{background:rgba(221,162,58,.15); color:var(--stock); margin-left:6px;}
+  .delta-up{color:var(--rise);} .delta-down{color:var(--drop);}
+  .empty{color:var(--muted); padding:40px 0; text-align:center; font-size:14px; border:1px dashed var(--border);}
+  .charts{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px;}
+  @media (max-width:800px){ .charts{grid-template-columns:1fr;} }
+  .panel{background:var(--surface); border:1px solid var(--border); padding:16px;}
+  .panel h2{font-size:13px; font-weight:600; margin:0 0 12px; color:var(--muted); text-transform:uppercase; letter-spacing:.03em;}
+  select{
+    background:var(--bg); color:var(--text); border:1px solid var(--border); padding:6px 8px;
+    font:inherit; font-size:13px; margin-bottom:10px;
+  }
+  .wrap{overflow-x:auto;}
+  footer{color:var(--muted); font-size:11px; padding:24px; text-align:center;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Component Price Desk</h1>
+  <div class="sub" id="updated-sub">Loading data…</div>
+  <nav>
+    <button data-tab="dashboard" class="active">Dashboard</button>
+    <button data-tab="products">Products</button>
+    <button data-tab="history">Price History</button>
+  </nav>
+</header>
+
+<main>
+
+  <section id="dashboard" class="tab active">
+    <div class="wrap">
+      <table id="dash-table">
+        <thead>
+          <tr>
+            <th>Component</th><th>Current Price</th><th>Cheapest Retailer</th>
+            <th>Retailers In Stock</th><th>Your Margin</th><th>7-Day Δ</th><th>Flags</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="dash-empty" class="empty" style="display:none;">
+        No price data yet. Once the daily collector has run at least once, this fills in automatically.
+      </div>
+    </div>
+
+    <div class="charts">
+      <div class="panel">
+        <h2>45-Day Price History</h2>
+        <select id="history-select"></select>
+        <canvas id="historyChart" height="200"></canvas>
+      </div>
+      <div class="panel">
+        <h2>Current vs 7-Day Average</h2>
+        <canvas id="avgChart" height="200"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="tab">
+    <div class="wrap">
+      <table>
+        <thead><tr><th>Category</th><th>Component</th><th>Search Term</th><th>Your Price</th></tr></thead>
+        <tbody id="products-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="history" class="tab">
+    <div class="wrap">
+      <table>
+        <thead><tr><th>Date</th><th>Category</th><th>Component</th><th>Lowest Price</th><th>Retailers In Stock</th></tr></thead>
+        <tbody id="history-body"></tbody>
+      </table>
+      <div id="history-empty" class="empty" style="display:none;">No history logged yet.</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Data refreshed daily by GitHub Actions · country=gb via PriceAPI</footer>
+
+<script>
+// ---- Settings (edit these to change alert thresholds) ----
+const PRICE_ALERT_THRESHOLD = 0.05;   // 5%
+const MIN_RETAILERS_IN_STOCK = 3;
+// ------------------------------------------------------------
+
+const gbp = n => n == null ? '—' : '£' + n.toFixed(2);
+const pct = n => n == null ? '—' : (n * 100).toFixed(1) + '%';
+
+async function loadJSON(path, fallback){
+  try {
+    const r = await fetch(path);
+    if (!r.ok) throw new Error(r.status);
+    return await r.json();
+  } catch(e){
+    return fallback;
+  }
+}
+
+function daysAgo(dateStr, n){
+  const d = new Date(dateStr + 'T00:00:00Z');
+  d.setUTCDate(d.getUTCDate() - n);
+  return d.toISOString().slice(0,10);
+}
+
+function average(arr){
+  if (!arr.length) return null;
+  return arr.reduce((a,b)=>a+b,0) / arr.length;
+}
+
+(async function init(){
+  const [products, latest, history] = await Promise.all([
+    loadJSON('./products.json', []),
+    loadJSON('./data/latest.json', {}),
+    loadJSON('./data/price_history.json', []),
+  ]);
+
+  const hasLatest = Object.keys(latest).length > 0;
+  document.getElementById('updated-sub').textContent = hasLatest
+    ? 'Updated ' + new Date(Object.values(latest)[0].updated).toLocaleString('en-GB', {dateStyle:'medium', timeStyle:'short'})
+    : 'No collector run yet — see README for first-run instructions.';
+
+  // ---- Dashboard table ----
+  const tbody = document.querySelector('#dash-table tbody');
+  const today = history.length ? history[history.length-1].date : new Date().toISOString().slice(0,10);
+  const weekAgoStr = daysAgo(today, 7);
+
+  if (!hasLatest) {
+    document.getElementById('dash-empty').style.display = 'block';
+  }
+
+  products.forEach(p => {
+    const l = latest[p.id];
+    const current = l ? l.lowest_price : null;
+
+    const priorRows = history.filter(h => h.product_id === p.id && h.date <= weekAgoStr && h.lowest_price != null);
+    const weekAgoPrice = priorRows.length ? priorRows[priorRows.length-1].lowest_price : null;
+    const rows30 = history.filter(h => h.product_id === p.id && h.lowest_price != null && h.date > daysAgo(today,30));
+    const avg7 = average(history.filter(h => h.product_id===p.id && h.date > weekAgoStr && h.lowest_price!=null).map(h=>h.lowest_price));
+
+    let deltaHtml = '—';
+    if (current != null && weekAgoPrice != null){
+      const delta = (current - weekAgoPrice) / weekAgoPrice;
+      const cls = delta > 0 ? 'delta-up' : (delta < 0 ? 'delta-down' : '');
+      deltaHtml = `<span class="${cls} num">${delta>0?'+':''}${pct(delta)}</span>`;
+    }
+
+    let flags = '';
+    if (current != null && avg7 != null){
+      const diff = (current - avg7) / avg7;
+      if (diff <= -PRICE_ALERT_THRESHOLD) flags += `<span class="flag flag-drop">PRICE DOWN</span>`;
+      else if (diff >= PRICE_ALERT_THRESHOLD) flags += `<span class="flag flag-rise">PRICE UP</span>`;
+    }
+    const stockCount = l ? l.retailers_in_stock : 0;
+    if (l && stockCount < MIN_RETAILERS_IN_STOCK){
+      flags += `<span class="flag flag-stock">LOW STOCK</span>`;
+    }
+
+    const margin = (l && l.your_price != null && current != null) ? (l.your_price - current) : null;
+    const marginPct = (margin != null && l.your_price) ? margin / l.your_price : null;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${p.component}<div class="cat">${p.category}</div></td>
+      <td class="num">${gbp(current)}</td>
+      <td>${l && l.cheapest_retailer ? l.cheapest_retailer : '—'}</td>
+      <td class="num">${l ? stockCount : '—'}</td>
+      <td class="num">${margin!=null ? gbp(margin) + ' (' + pct(marginPct) + ')' : '—'}</td>
+      <td>${deltaHtml}</td>
+      <td>${flags || '—'}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // ---- Products tab ----
+  const pBody = document.getElementById('products-body');
+  products.forEach(p => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${p.category}</td><td>${p.component}</td><td>${p.search_term}</td><td class="num">${gbp(p.your_price)}</td>`;
+    pBody.appendChild(tr);
+  });
+
+  // ---- Price History tab ----
+  const hBody = document.getElementById('history-body');
+  if (!history.length) document.getElementById('history-empty').style.display = 'block';
+  history.slice().reverse().forEach(h => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${h.date}</td><td>${h.category}</td><td>${h.component}</td><td class="num">${gbp(h.lowest_price)}</td><td class="num">${h.retailers_in_stock}</td>`;
+    hBody.appendChild(tr);
+  });
+
+  // ---- 45-day line chart ----
+  const select = document.getElementById('history-select');
+  products.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.id; opt.textContent = p.component;
+    select.appendChild(opt);
+  });
+
+  let lineChart;
+  function drawLineChart(productId){
+    const cutoff = daysAgo(today, 45);
+    const rows = history.filter(h => h.product_id === productId && h.date > cutoff)
+                         .sort((a,b)=>a.date.localeCompare(b.date));
+    const ctx = document.getElementById('historyChart');
+    if (lineChart) lineChart.destroy();
+    lineChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: rows.map(r=>r.date),
+        datasets: [{
+          data: rows.map(r=>r.lowest_price),
+          borderColor: '#5B8DEF', backgroundColor: 'rgba(91,141,239,.12)',
+          fill: true, tension: .15, pointRadius: 2,
+        }]
+      },
+      options: {
+        plugins:{legend:{display:false}},
+        scales:{
+          x:{ticks:{color:'#838C9C', maxTicksLimit:8}, grid:{color:'#262C38'}},
+          y:{ticks:{color:'#838C9C', callback:v=>'£'+v}, grid:{color:'#262C38'}}
+        }
+      }
+    });
+  }
+  if (products.length){
+    select.value = products[0].id;
+    drawLineChart(products[0].id);
+  }
+  select.addEventListener('change', e => drawLineChart(e.target.value));
+
+  // ---- Current vs 7-day avg bar chart ----
+  const barLabels = [], barCurrent = [], barAvg = [];
+  products.forEach(p => {
+    const l = latest[p.id];
+    const avg7 = average(history.filter(h => h.product_id===p.id && h.date > weekAgoStr && h.lowest_price!=null).map(h=>h.lowest_price));
+    if (l && l.lowest_price != null){
+      barLabels.push(p.component);
+      barCurrent.push(l.lowest_price);
+      barAvg.push(avg7);
+    }
+  });
+  new Chart(document.getElementById('avgChart'), {
+    type: 'bar',
+    data: {
+      labels: barLabels,
+      datasets: [
+        {label:'Current', data:barCurrent, backgroundColor:'#5B8DEF'},
+        {label:'7-Day Avg', data:barAvg, backgroundColor:'#3A4152'},
+      ]
+    },
+    options: {
+      plugins:{legend:{labels:{color:'#E7EAF0'}}},
+      scales:{
+        x:{ticks:{color:'#838C9C'}, grid:{display:false}},
+        y:{ticks:{color:'#838C9C', callback:v=>'£'+v}, grid:{color:'#262C38'}}
+      }
+    }
+  });
+
+  // ---- Tab nav ----
+  document.querySelectorAll('nav button').forEach(btn=>{
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

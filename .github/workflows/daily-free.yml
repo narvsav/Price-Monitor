@@ -1,0 +1,42 @@
+name: Daily Price Collector (Free)
+
+# Only enable ONE of the two workflows in this repo at a time (this one, or
+# daily.yml which uses the paid PriceAPI collector). Running both will log
+# two entries per product per day and confuse the dashboard's averages.
+# To disable this one: repo -> Actions tab -> "Daily Price Collector (Free)"
+# -> "..." menu -> Disable workflow. Or just delete this file.
+
+on:
+  schedule:
+    # 07:30 UTC every day
+    - cron: '30 7 * * *'
+  workflow_dispatch: {}   # lets you trigger a run manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests lxml
+
+      - name: Run free collector
+        run: python collector_free.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "price-bot"
+          git config user.email "price-bot@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "Daily price update (free collector) $(date -u +%F)"
+          git push

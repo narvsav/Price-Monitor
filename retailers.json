@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Scan",
+    "method": "xpath",
+    "price_xpath": "//*[@itemprop='price']/@content",
+    "stock_xpath": "",
+    "note": "Verified working."
+  },
+  {
+    "name": "Overclockers UK",
+    "method": "jsonld",
+    "price_xpath": "",
+    "stock_xpath": "",
+    "note": "Verified working via JSON-LD embedded in the page."
+  },
+  {
+    "name": "CCL",
+    "method": "xpath",
+    "price_xpath": "//span[contains(@class,'price')]",
+    "stock_xpath": "//*[contains(@class,'stock')]",
+    "note": "Generic starting point, NOT verified - inspect one real CCL product page and replace price_xpath/stock_xpath before relying on this."
+  },
+  {
+    "name": "Box",
+    "method": "xpath",
+    "price_xpath": "//span[contains(@class,'price')]",
+    "stock_xpath": "",
+    "note": "During earlier testing in this project, Box could not be fetched at all (blocked the request). Test with the debug script below before trusting this retailer - it may simply not work with this method."
+  }
+]

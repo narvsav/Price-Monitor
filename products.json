@@ -1,0 +1,12 @@
+[
+  { "id": "gpu-5070",    "category": "GPU",   "component": "RTX 5070",              "search_term": "NVIDIA RTX 5070 graphics card",        "your_price": 599.00, "urls": { "Scan": "", "Overclockers UK": "", "CCL": "", "Box": "" } },
+  { "id": "gpu-5070ti",  "category": "GPU",   "component": "RTX 5070 Ti",           "search_term": "NVIDIA RTX 5070 Ti graphics card",     "your_price": 849.00, "urls": { "Scan": "", "Overclockers UK": "", "CCL": "", "Box": "" } },
+  { "id": "gpu-9070xt",  "category": "GPU",   "component": "RX 9070 XT",            "search_term": "AMD RX 9070 XT graphics card",         "your_price": 699.00, "urls": { "Scan": "", "Overclockers UK": "", "CCL": "", "Box": "" } },
+  { "id": "cpu-9800x3d", "category": "CPU",   "component": "Ryzen 7 9800X3D",       "search_term": "AMD Ryzen 7 9800X3D",                  "your_price": 469.00, "urls": { "Scan": "", "Overclockers UK": "", "CCL": "", "Box": "" } },
+  { "id": "cpu-265k",    "category": "CPU",   "component": "Core Ultra 7 265K",     "search_term": "Intel Core Ultra 7 265K",              "your_price": 339.00, "urls": { "Scan": "", "Overclockers UK": "", "CCL": "", "Box": "" } },
+  { "id": "mobo-b650",   "category": "Motherboard", "component": "AM5 B650 board",  "search_term": "AM5 B650 motherboard ATX",             "your_price": 169.00, "urls": { "Scan": "", "Overclockers UK": "", "CCL": "", "Box": "" } },
+  { "id": "ram-32-6000", "category": "RAM",   "component": "32GB DDR5-6000 kit",    "search_term": "32GB DDR5 6000MHz kit",                "your_price": 109.00, "urls": { "Scan": "", "Overclockers UK": "", "CCL": "", "Box": "" } },
+  { "id": "ssd-2tb-g4",  "category": "Storage","component": "2TB NVMe Gen4 SSD",     "search_term": "2TB NVMe Gen4 SSD",                    "your_price": 139.00, "urls": { "Scan": "", "Overclockers UK": "", "CCL": "", "Box": "" } },
+  { "id": "psu-750-gold","category": "PSU",   "component": "750W 80+ Gold",         "search_term": "750W 80 Plus Gold modular PSU",        "your_price": 109.00, "urls": { "Scan": "", "Overclockers UK": "", "CCL": "", "Box": "" } },
+  { "id": "cooler-240",  "category": "Cooler","component": "240mm AIO cooler",      "search_term": "240mm AIO liquid CPU cooler",          "your_price": 99.00,  "urls": { "Scan": "", "Overclockers UK": "", "CCL": "", "Box": "" } }
+]
