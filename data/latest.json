@@ -1,1 +1,102 @@
-{}
+{
+  "gpu-5070": {
+    "category": "GPU",
+    "component": "RTX 5070",
+    "your_price": 599.0,
+    "lowest_price": null,
+    "cheapest_retailer": null,
+    "retailers_in_stock": 0,
+    "offers": [],
+    "updated": "2026-10-02T07:42:32.799235+00:00"
+  },
+  "gpu-5070ti": {
+    "category": "GPU",
+    "component": "RTX 5070 Ti",
+    "your_price": 849.0,
+    "lowest_price": null,
+    "cheapest_retailer": null,
+    "retailers_in_stock": 0,
+    "offers": [],
+    "updated": "2026-10-02T07:42:32.799252+00:00"
+  },
+  "gpu-9070xt": {
+    "category": "GPU",
+    "component": "RX 9070 XT",
+    "your_price": 699.0,
+    "lowest_price": null,
+    "cheapest_retailer": null,
+    "retailers_in_stock": 0,
+    "offers": [],
+    "updated": "2026-10-02T07:42:32.799259+00:00"
+  },
+  "cpu-9800x3d": {
+    "category": "CPU",
+    "component": "Ryzen 7 9800X3D",
+    "your_price": 469.0,
+    "lowest_price": null,
+    "cheapest_retailer": null,
+    "retailers_in_stock": 0,
+    "offers": [],
+    "updated": "2026-10-02T07:42:32.799264+00:00"
+  },
+  "cpu-265k": {
+    "category": "CPU",
+    "component": "Core Ultra 7 265K",
+    "your_price": 339.0,
+    "lowest_price": null,
+    "cheapest_retailer": null,
+    "retailers_in_stock": 0,
+    "offers": [],
+    "updated": "2026-10-02T07:42:32.799269+00:00"
+  },
+  "mobo-b650": {
+    "category": "Motherboard",
+    "component": "AM5 B650 board",
+    "your_price": 169.0,
+    "lowest_price": null,
+    "cheapest_retailer": null,
+    "retailers_in_stock": 0,
+    "offers": [],
+    "updated": "2026-10-02T07:42:32.799274+00:00"
+  },
+  "ram-32-6000": {
+    "category": "RAM",
+    "component": "32GB DDR5-6000 kit",
+    "your_price": 109.0,
+    "lowest_price": null,
+    "cheapest_retailer": null,
+    "retailers_in_stock": 0,
+    "offers": [],
+    "updated": "2026-10-02T07:42:32.799278+00:00"
+  },
+  "ssd-2tb-g4": {
+    "category": "Storage",
+    "component": "2TB NVMe Gen4 SSD",
+    "your_price": 139.0,
+    "lowest_price": null,
+    "cheapest_retailer": null,
+    "retailers_in_stock": 0,
+    "offers": [],
+    "updated": "2026-10-02T07:42:32.799283+00:00"
+  },
+  "psu-750-gold": {
+    "category": "PSU",
+    "component": "750W 80+ Gold",
+    "your_price": 109.0,
+    "lowest_price": null,
+    "cheapest_retailer": null,
+    "retailers_in_stock": 0,
+    "offers": [],
+    "updated": "2026-10-02T07:42:32.799291+00:00"
+  },
+  "cooler-240": {
+    "category": "Cooler",
+    "component": "240mm AIO cooler",
+    "your_price": 99.0,
+    "lowest_price": null,
+    "cheapest_retailer": null,
+    "retailers_in_stock": 0,
+    "offers": [],
+    "updated": "2026-10-02T07:42:32.799295+00:00"
+  }
+}
