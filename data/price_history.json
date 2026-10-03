@@ -78,5 +78,85 @@
     "component": "240mm AIO cooler",
     "lowest_price": null,
     "retailers_in_stock": 0
+  },
+  {
+    "date": "2026-10-03",
+    "product_id": "gpu-5070",
+    "category": "GPU",
+    "component": "RTX 5070",
+    "lowest_price": null,
+    "retailers_in_stock": 0
+  },
+  {
+    "date": "2026-10-03",
+    "product_id": "gpu-5070ti",
+    "category": "GPU",
+    "component": "RTX 5070 Ti",
+    "lowest_price": null,
+    "retailers_in_stock": 0
+  },
+  {
+    "date": "2026-10-03",
+    "product_id": "gpu-9070xt",
+    "category": "GPU",
+    "component": "RX 9070 XT",
+    "lowest_price": null,
+    "retailers_in_stock": 0
+  },
+  {
+    "date": "2026-10-03",
+    "product_id": "cpu-9800x3d",
+    "category": "CPU",
+    "component": "Ryzen 7 9800X3D",
+    "lowest_price": null,
+    "retailers_in_stock": 0
+  },
+  {
+    "date": "2026-10-03",
+    "product_id": "cpu-265k",
+    "category": "CPU",
+    "component": "Core Ultra 7 265K",
+    "lowest_price": null,
+    "retailers_in_stock": 0
+  },
+  {
+    "date": "2026-10-03",
+    "product_id": "mobo-b650",
+    "category": "Motherboard",
+    "component": "AM5 B650 board",
+    "lowest_price": null,
+    "retailers_in_stock": 0
+  },
+  {
+    "date": "2026-10-03",
+    "product_id": "ram-32-6000",
+    "category": "RAM",
+    "component": "32GB DDR5-6000 kit",
+    "lowest_price": null,
+    "retailers_in_stock": 0
+  },
+  {
+    "date": "2026-10-03",
+    "product_id": "ssd-2tb-g4",
+    "category": "Storage",
+    "component": "2TB NVMe Gen4 SSD",
+    "lowest_price": null,
+    "retailers_in_stock": 0
+  },
+  {
+    "date": "2026-10-03",
+    "product_id": "psu-750-gold",
+    "category": "PSU",
+    "component": "750W 80+ Gold",
+    "lowest_price": null,
+    "retailers_in_stock": 0
+  },
+  {
+    "date": "2026-10-03",
+    "product_id": "cooler-240",
+    "category": "Cooler",
+    "component": "240mm AIO cooler",
+    "lowest_price": null,
+    "retailers_in_stock": 0
   }
 ]
