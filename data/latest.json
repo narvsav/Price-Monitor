@@ -7,7 +7,7 @@
     "cheapest_retailer": null,
     "retailers_in_stock": 0,
     "offers": [],
-    "updated": "2026-10-04T15:19:37.773694+00:00"
+    "updated": "2026-10-05T07:45:00.650013+00:00"
   },
   "gpu-5070ti": {
     "category": "GPU",
@@ -17,7 +17,7 @@
     "cheapest_retailer": null,
     "retailers_in_stock": 0,
     "offers": [],
-    "updated": "2026-10-04T15:19:37.773708+00:00"
+    "updated": "2026-10-05T07:45:00.650028+00:00"
   },
   "gpu-9070xt": {
     "category": "GPU",
@@ -27,7 +27,7 @@
     "cheapest_retailer": null,
     "retailers_in_stock": 0,
     "offers": [],
-    "updated": "2026-10-04T15:19:37.773714+00:00"
+    "updated": "2026-10-05T07:45:00.650033+00:00"
   },
   "cpu-9800x3d": {
     "category": "CPU",
@@ -37,7 +37,7 @@
     "cheapest_retailer": null,
     "retailers_in_stock": 0,
     "offers": [],
-    "updated": "2026-10-04T15:19:37.773718+00:00"
+    "updated": "2026-10-05T07:45:00.650036+00:00"
   },
   "cpu-265k": {
     "category": "CPU",
@@ -47,7 +47,7 @@
     "cheapest_retailer": null,
     "retailers_in_stock": 0,
     "offers": [],
-    "updated": "2026-10-04T15:19:37.773721+00:00"
+    "updated": "2026-10-05T07:45:00.650040+00:00"
   },
   "mobo-b650": {
     "category": "Motherboard",
@@ -57,7 +57,7 @@
     "cheapest_retailer": null,
     "retailers_in_stock": 0,
     "offers": [],
-    "updated": "2026-10-04T15:19:37.773725+00:00"
+    "updated": "2026-10-05T07:45:00.650043+00:00"
   },
   "ram-32-6000": {
     "category": "RAM",
@@ -67,7 +67,7 @@
     "cheapest_retailer": null,
     "retailers_in_stock": 0,
     "offers": [],
-    "updated": "2026-10-04T15:19:37.773728+00:00"
+    "updated": "2026-10-05T07:45:00.650045+00:00"
   },
   "ssd-2tb-g4": {
     "category": "Storage",
@@ -77,7 +77,7 @@
     "cheapest_retailer": null,
     "retailers_in_stock": 0,
     "offers": [],
-    "updated": "2026-10-04T15:19:37.773731+00:00"
+    "updated": "2026-10-05T07:45:00.650047+00:00"
   },
   "psu-750-gold": {
     "category": "PSU",
@@ -87,7 +87,7 @@
     "cheapest_retailer": null,
     "retailers_in_stock": 0,
     "offers": [],
-    "updated": "2026-10-04T15:19:37.773736+00:00"
+    "updated": "2026-10-05T07:45:00.650050+00:00"
   },
   "cooler-240": {
     "category": "Cooler",
@@ -97,6 +97,6 @@
     "cheapest_retailer": null,
     "retailers_in_stock": 0,
     "offers": [],
-    "updated": "2026-10-04T15:19:37.773742+00:00"
+    "updated": "2026-10-05T07:45:00.650052+00:00"
   }
 }
